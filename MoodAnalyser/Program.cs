@@ -26,7 +26,6 @@ namespace MoodAnalyser
             {
                 return "HAPPY";
             }
-
         }
     }
 }
