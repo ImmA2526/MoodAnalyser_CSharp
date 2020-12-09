@@ -80,13 +80,23 @@ namespace MoodAnalyser
                 MoodAnalyser moodAnalyser = new MoodAnalyser(message);
                 //Act
                 string result = moodAnalyser.AnalyseMood();
-                //Assert
             }
             catch (MoodAnalyserException e)
             {
+                //Assert         
                 Assert.AreEqual("Mood should not be empty", e.Message);
             }
+        }
 
+        /// <summary>
+        /// UC4-TC4.1 Proper class details are provided and expected to return the MoodAnalyser Object
+        /// </summary>
+        [TestMethod]
+        public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyserObject()
+        {
+            object expected = new MoodAnalyser();
+            object obj = MoodAnalyserFactory.CreateeMoodAnalyse("MoodAnalyserProject.MoodAnalyser", "MoodAnalyser");
+            expected.Equals(obj);
         }
     }
 }
