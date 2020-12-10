@@ -6,7 +6,9 @@ namespace MoodAnalyser
     public class UnitTest1
     {
 
-        
+        /// <summary>
+        /// This Test case ensure AnalyseMood() method will return when SAD when message contains Sad
+        /// </summary>
         [TestMethod]
         public void GivenSadMessage_WhenSad_ShouldReturnSAD()
         {
