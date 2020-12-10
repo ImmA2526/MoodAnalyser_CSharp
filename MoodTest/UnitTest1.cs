@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoodAnalyser;
 namespace MoodAnalyser
-{
+{ 
     [TestClass]
     public class UnitTest1
     {
@@ -98,5 +98,14 @@ namespace MoodAnalyser
             object obj = MoodAnalyserFactory.CreateeMoodAnalyse("MoodAnalyser.MoodAnalyser", "MoodAnalyser");
             expected.Equals(obj);
         }
+
+        [TestMethod]
+        public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyserObject_UsingParameterizdConstructor()
+        {
+            object expected = new MoodAnalyser("HAPPY");
+            object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor("MoodAnalyser.MoodAnalyser", "MoodAnalyser", "HAPPY");
+            expected.Equals(obj);
+        }
+
     }
 }
