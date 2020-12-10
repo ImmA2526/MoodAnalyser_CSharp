@@ -95,7 +95,7 @@ namespace MoodAnalyser
         public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyserObject()
         {
             object expected = new MoodAnalyser();
-            object obj = MoodAnalyserFactory.CreateeMoodAnalyse("MoodAnalyserProject.MoodAnalyser", "MoodAnalyser");
+            object obj = MoodAnalyserFactory.CreateeMoodAnalyse("MoodAnalyser.MoodAnalyser", "MoodAnalyser");
             expected.Equals(obj);
         }
     }
