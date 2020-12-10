@@ -1,41 +1,46 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace MoodAnalyser
 {
     public class MoodAnalyser
     {
-        public string message;
-        public MoodAnalyser() : this("I am in Happy Mood")
+        private string message;
+        static void Main(string[] args)
+        {
+        }
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        public MoodAnalyser()
         {
 
         }
-        public MoodAnalyser(string message)
+        /// <summary>
+        /// Parameterized Constructor
+        /// </summary>
+        /// <param name="message">The message for intialization of message</param>
+        public MoodAnalyser(String message)
         {
             this.message = message;
         }
-        static void Main(string[] args)
-        {
-
-        }
+        /// <summary>
+        /// Analyses the mood for happy,sad,handling exception for empty mood
+        /// </summary>
+        /// <returns>sad or happy when condtion is matched</returns>
         public string AnalyseMood()
         {
             try
             {
                 if (this.message.Equals(string.Empty))
                 {
-                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.EMPTY_MESSAGE, "Mood should not be empty");
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.EMPTY_MESSAGE, "Mood Should Not Be Empty");
+
                 }
-                if (this.message.Contains("Sad"))
+                if (message.Contains("Sad"))
                 {
-                    return "SAD";
-                }
-                else if (this.message.Contains("Happy"))
-                {
-                    return "HAPPY";
-                }
-                else if (this.message.Contains("Any"))
-                {
-                    return "HAPPY";
+                    return "Sad";
                 }
                 else
                 {
@@ -44,7 +49,8 @@ namespace MoodAnalyser
             }
             catch (NullReferenceException)
             {
-                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_MESSAGE, "Message should not be null");
+                return "Happy";
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_MESSAGE, "Mood Should Not Be Null");
             }
         }
     }
