@@ -17,7 +17,7 @@ namespace MoodAnalyser
             MoodAnalyser moodAnalyser = new MoodAnalyser("I am in Sad Mood");
             //Act
             string result = moodAnalyser.AnalyseMood();
-            //Assert//
+            //Assert
             Assert.AreEqual(Expected, result);
         }
 
