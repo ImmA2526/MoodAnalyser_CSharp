@@ -6,7 +6,7 @@ namespace MoodAnalyser
 {
     public class MoodAnalyser
     {
-        private string message;
+        public string message;
         static void Main(string[] args)
         {
         }

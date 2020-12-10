@@ -79,8 +79,8 @@ namespace MoodAnalyser
         {
             try
             {
-                Type type = Type.GetType("MoodAnalyzerProblem.MoodAnalyzer");
-                object moodAnalyseObject = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", message);
+                Type type = Type.GetType("MoodAnalyser.MoodAnalyser");
+                object moodAnalyseObject = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor("MoodAnalyser.MoodAnalyser", "MoodAnalyser", message);
                 MethodInfo methodeInfo = type.GetMethod(methodeName);
                 object mood = methodeInfo.Invoke(moodAnalyseObject, null);
                 return mood.ToString();
@@ -88,6 +88,36 @@ namespace MoodAnalyser
             catch
             {
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "Method is not found");
+            }
+        }
+        /// <summary>
+        /// creating Sets the field.
+        /// </summary>
+        /// <param name="message">The message contain happy.</param>
+        /// <param name="fieldName">Name of the field that is message.</param>
+        /// <returns>message of mood analyzer class</returns>
+        /// <exception cref="MoodAnalyserException">
+        /// Message should not be null
+        /// or
+        /// Field is not found
+        /// </exception>
+        public static string SetField(string message, string fieldName)
+        {
+            try
+            {
+                MoodAnalyser moodAnalyser = new MoodAnalyser();
+                Type type = typeof(MoodAnalyser);
+                FieldInfo field = type.GetField(fieldName, BindingFlags.Public | BindingFlags.Instance);
+                if (message == null)
+                {
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_FIELD, "Message should not be null");
+                }
+                field.SetValue(moodAnalyser, message);
+                return moodAnalyser.message;
+            }
+            catch (NullReferenceException)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_FIELD, "Field is not found");
             }
         }
     }

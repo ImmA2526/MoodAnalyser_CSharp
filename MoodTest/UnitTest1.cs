@@ -15,6 +15,7 @@ namespace MoodAnalyser
         {
 
         }
+
         ///<summary>
         /// TC 1.1 Given i am in sad mood should return sad mood.
         ///</summary>
@@ -26,6 +27,7 @@ namespace MoodAnalyser
             string mood = MoodAnalyser.AnalyseMood();
             Assert.AreEqual(Expected, mood);
         }
+
         ///<summary>
         /// TC 1.2 Given i am in Happy mood should return Happy mood.
         ///</summary>
@@ -37,6 +39,7 @@ namespace MoodAnalyser
             string mood = MoodAnalyser.AnalyseMood();
             Assert.AreEqual(Expected, mood);
         }
+
         ///<summary>
         /// TC 2.1 Given null mood should return happy mood.
         ///</summary>
@@ -49,6 +52,7 @@ namespace MoodAnalyser
             string mood = MoodAnalyser.AnalyseMood();
             Assert.AreEqual(Expected, mood);
         }
+
         /// <summary>
         /// TC 3.1 Given Mood when null should throw mood analysis exception
         /// </summary>
@@ -66,6 +70,7 @@ namespace MoodAnalyser
                 Assert.AreEqual("Mood Should Not Be Null", e.Message);
             }
         }
+
         /// <summary>
         /// TC 3.2 Given Empty Mood Should Throw MoodAnalysisException indicating Empty Mood
         /// </summary>
@@ -96,6 +101,7 @@ namespace MoodAnalyser
             object obj = MoodAnalyserFactory.CreateMoodAnalyser("MoodAnalyser.MoodAnalyser", "MoodAnalyser");
             expected.Equals(obj);
         }
+
         /// <summary>
         /// TC 4.2 Given class name  when not proper then throw mood analyzer exception
         /// </summary>
@@ -112,6 +118,7 @@ namespace MoodAnalyser
                 Assert.AreEqual(expected, exception.Message);
             }
         }
+
         /// <summary>
         /// TC 4.3 Given class when constructor not proper then throw mood analyzer exception
         /// </summary>
@@ -128,6 +135,7 @@ namespace MoodAnalyser
                 Assert.AreEqual(expected, exception.Message);
             }
         }
+
         /// <summary>
         ///  TC 5.1 Given Mood Analyser when class name with parameterized constructor should return object
         ///  MoodAnalyser<<-this is nameSpace
@@ -140,6 +148,7 @@ namespace MoodAnalyser
             object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor("MoodAnalyser.MoodAnalyser", "MoodAnalyser", "Happy");
             expected.Equals(obj);
         }
+
         /// <summary>
         /// TC 5.2 Given class name  when not proper then throw no such class exception
         /// </summary>
@@ -156,6 +165,7 @@ namespace MoodAnalyser
                 Assert.AreEqual(expected, exception.Message);
             }
         }
+
         /// <summary>
         /// TC 5.3 Given class when constructor not proper then throw no such constructor exception
         /// </summary>
@@ -166,6 +176,34 @@ namespace MoodAnalyser
             try
             {
                 object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor("MoodAnalyser.MoodAnalyser", "WrongConstructor", "Happy");
+            }
+            catch (MoodAnalyserException exception)
+            {
+                Assert.AreEqual(expected, exception.Message);
+            }
+        }
+        
+        /// <summary>
+        ///  TC 6.1 Given happy message using reflection when proper should return happy mood
+        /// </summary>
+        [TestMethod]
+        public void GivenHappyMessage_WhenUsingReflection_ThenShouldReturnHappyMood()
+        {
+            string expected = "Happy";
+            object obj = MoodAnalyserFactory.InvokeAnalyseMood("Happy", "AnalyseMood");
+            Assert.AreEqual(expected, obj);
+        }
+
+        /// <summary>
+        ///  TC 6.2 Given happy message when improper methode then should throw 
+        /// </summary>
+        [TestMethod]
+        public void GivenHappyMessage_WhenImproperMethode_ThenShouldThrowMoodAnalysisException()
+        {
+            string expected = "Method is not found";
+            try
+            {
+                object obj = MoodAnalyserFactory.InvokeAnalyseMood("Happy", "WrongAnalyseMood");
             }
             catch (MoodAnalyserException exception)
             {
