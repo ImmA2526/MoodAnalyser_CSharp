@@ -194,9 +194,7 @@ namespace MoodAnalyser
             Assert.AreEqual(expected, obj);
         }
 
-        /// <summary>
-        ///  TC 6.2 Given happy message when improper methode then should throw 
-        /// </summary>
+       
         [TestMethod]
         public void GivenHappyMessage_WhenImproperMethode_ThenShouldThrowMoodAnalysisException()
         {
